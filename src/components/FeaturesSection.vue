@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted } from "vue";
 
 // 组件挂载时初始化动画观察器
 onMounted(() => {
@@ -7,22 +7,22 @@ onMounted(() => {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate-in')
+          entry.target.classList.add("animate-in");
         }
-      })
+      });
     },
     {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px',
-    }
-  )
+      rootMargin: "0px 0px -50px 0px",
+    },
+  );
 
   // 观察特色功能卡片
-  const featureCards = document.querySelectorAll('.feature-card')
+  const featureCards = document.querySelectorAll(".feature-card");
   featureCards.forEach((card) => {
-    observerAnimations.observe(card)
-  })
-})
+    observerAnimations.observe(card);
+  });
+});
 </script>
 
 <template>
@@ -32,8 +32,8 @@ onMounted(() => {
       <div class="feature-card">
         <h3>More user</h3>
         <p>
-          Thanks to our user acquisition system and team, they will help you game reach every corner
-          of the world
+          Thanks to our user acquisition system and team, they will help you
+          game reach every corner of the world
         </p>
       </div>
 
@@ -75,7 +75,7 @@ onMounted(() => {
 
 /* 顶部过渡层 - 与Hero同步变化 */
 .features-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -93,7 +93,7 @@ onMounted(() => {
 
 /* 底部过渡层 - 向Contact区域过渡 */
 .features-section::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -178,7 +178,9 @@ onMounted(() => {
   backdrop-filter: blur(20px);
   padding: 3.5rem 2.5rem;
   border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.05);
   text-align: center;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -194,19 +196,26 @@ onMounted(() => {
 }
 
 .feature-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
   transition: left 0.6s ease;
 }
 
 .feature-card:hover {
   transform: translateY(-12px) scale(1.03);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.15),
+    0 8px 16px rgba(0, 0, 0, 0.1);
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.98);
   border-color: rgba(102, 126, 234, 0.3);
@@ -226,7 +235,7 @@ onMounted(() => {
 }
 
 .feature-card h3::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -8px;
   left: 50%;

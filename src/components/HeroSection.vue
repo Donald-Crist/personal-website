@@ -1,93 +1,93 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick } from "vue";
 
 // 响应式变量
-const heroSection = ref<HTMLElement | null>(null)
-const showScrollIndicator = ref(true)
-let heroObserver: IntersectionObserver | null = null
+const heroSection = ref<HTMLElement | null>(null);
+const showScrollIndicator = ref(true);
+let heroObserver: IntersectionObserver | null = null;
 
 // 滚动到下一个区域的函数
 const scrollToNext = () => {
-  const featuresSection = document.querySelector('.features-section')
+  const featuresSection = document.querySelector(".features-section");
   if (featuresSection) {
-    featuresSection.scrollIntoView({ behavior: 'smooth' })
+    featuresSection.scrollIntoView({ behavior: "smooth" });
   }
-}
+};
 
 // 初始化粒子位置的函数
 const initParticles = () => {
-  const particles = document.querySelectorAll('.particle')
-  const heroContainer = heroSection.value
+  const particles = document.querySelectorAll(".particle");
+  const heroContainer = heroSection.value;
 
   if (heroContainer && particles.length > 0) {
     // 确保容器已经有正确的尺寸
-    const containerHeight = heroContainer.offsetHeight || window.innerHeight
-    const containerWidth = heroContainer.offsetWidth || window.innerWidth
+    const containerHeight = heroContainer.offsetHeight || window.innerHeight;
+    const containerWidth = heroContainer.offsetWidth || window.innerWidth;
 
     particles.forEach((particle: Element) => {
-      const htmlParticle = particle as HTMLElement
+      const htmlParticle = particle as HTMLElement;
       // 确保粒子位置在容器范围内
-      const randomX = Math.random() * Math.max(containerWidth - 20, 100) // 留出更多边距
-      const randomY = Math.random() * Math.max(containerHeight - 20, 100) // 留出更多边距
-      const randomSize = Math.random() * 6 + 2
+      const randomX = Math.random() * Math.max(containerWidth - 20, 100); // 留出更多边距
+      const randomY = Math.random() * Math.max(containerHeight - 20, 100); // 留出更多边距
+      const randomSize = Math.random() * 6 + 2;
 
-      htmlParticle.style.left = randomX + 'px'
-      htmlParticle.style.top = randomY + 'px'
-      htmlParticle.style.width = randomSize + 'px'
-      htmlParticle.style.height = randomSize + 'px'
-      htmlParticle.style.animationDelay = Math.random() * 6 + 's'
-      htmlParticle.style.animationDuration = Math.random() * 8 + 6 + 's'
-    })
+      htmlParticle.style.left = randomX + "px";
+      htmlParticle.style.top = randomY + "px";
+      htmlParticle.style.width = randomSize + "px";
+      htmlParticle.style.height = randomSize + "px";
+      htmlParticle.style.animationDelay = Math.random() * 6 + "s";
+      htmlParticle.style.animationDuration = Math.random() * 8 + 6 + "s";
+    });
   }
-}
+};
 
 // 组件挂载时的初始化
 onMounted(async () => {
   // 等待DOM完全渲染
-  await nextTick()
+  await nextTick();
 
   // 延迟一点时间确保样式完全应用
   setTimeout(() => {
-    initParticles()
-  }, 100)
+    initParticles();
+  }, 100);
 
   // 创建 Hero 容器观察器来控制滚动指示器的显示
-  const heroContent = document.querySelector('.hero-container')
+  const heroContent = document.querySelector(".hero-container");
   if (heroContent) {
     heroObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           // 当 hero-container 大部分还在视口内时显示滚动指示器
           // 当 hero-container 大部分离开视口时隐藏滚动指示器
-          showScrollIndicator.value = entry.intersectionRatio >= 0.5
-        })
+          showScrollIndicator.value = entry.intersectionRatio >= 0.5;
+        });
       },
       {
         threshold: [0, 0.3, 0.5, 0.7, 1],
-        rootMargin: '0px',
-      }
-    )
+        rootMargin: "0px",
+      },
+    );
 
-    heroObserver.observe(heroContent)
+    heroObserver.observe(heroContent);
   }
-})
+});
 
 // 窗口大小变化时重新初始化粒子
 const handleResize = () => {
-  initParticles()
-}
+  initParticles();
+};
 
 onMounted(() => {
-  window.addEventListener('resize', handleResize)
-})
+  window.addEventListener("resize", handleResize);
+});
 
 // 组件卸载时清理观察器和事件监听器
 onUnmounted(() => {
   if (heroObserver) {
-    heroObserver.disconnect()
+    heroObserver.disconnect();
   }
-  window.removeEventListener('resize', handleResize)
-})
+  window.removeEventListener("resize", handleResize);
+});
 </script>
 
 <template>
@@ -101,23 +101,28 @@ onUnmounted(() => {
     <div class="hero-container">
       <h1 class="company-name">Octopus Interactive Technology Limited</h1>
       <h2 class="subtitle">
-        Mobile game publisher <span class="highlight">focusing on global market</span>
+        Mobile game publisher
+        <span class="highlight">focusing on global market</span>
       </h2>
 
       <div class="hero-brand">
         <h3 class="brand-title">OCTOPUS</h3>
         <p class="brand-subtitle">mobile game publisher</p>
         <p class="brand-description">
-          We love bring excellent game to global players and working with developers all over the
-          word.<br />
-          We know you are the one who have the best idea. Contact us and let us learn more about
-          you!
+          We love bring excellent game to global players and working with
+          developers all over the word.<br />
+          We know you are the one who have the best idea. Contact us and let us
+          learn more about you!
         </p>
       </div>
     </div>
 
     <!-- 滚动指示器 -->
-    <div class="scroll-indicator" @click="scrollToNext" v-show="showScrollIndicator">
+    <div
+      class="scroll-indicator"
+      @click="scrollToNext"
+      v-show="showScrollIndicator"
+    >
       <div class="scroll-arrow"></div>
     </div>
   </section>
@@ -276,7 +281,9 @@ onUnmounted(() => {
   transform: translateX(-50%);
   z-index: 10;
   cursor: pointer;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
 }
 
 .scroll-arrow {
@@ -302,7 +309,7 @@ onUnmounted(() => {
 }
 
 .scroll-arrow::before {
-  content: '';
+  content: "";
   width: 12px;
   height: 12px;
   border-right: 2px solid rgba(255, 255, 255, 0.8);

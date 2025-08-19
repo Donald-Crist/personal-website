@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted } from "vue";
 
 // 组件挂载时初始化动画
 onMounted(() => {
@@ -7,22 +7,22 @@ onMounted(() => {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate-in')
+          entry.target.classList.add("animate-in");
         }
-      })
+      });
     },
     {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px',
-    }
-  )
+      rootMargin: "0px 0px -50px 0px",
+    },
+  );
 
   // 观察页脚元素
-  const footerSection = document.querySelector('.footer')
+  const footerSection = document.querySelector(".footer");
   if (footerSection) {
-    observerAnimations.observe(footerSection)
+    observerAnimations.observe(footerSection);
   }
-})
+});
 </script>
 
 <template>
@@ -42,7 +42,11 @@ onMounted(() => {
                 stroke="currentColor"
                 stroke-width="2"
               />
-              <polyline points="9,22 9,12 15,12 15,22" stroke="currentColor" stroke-width="2" />
+              <polyline
+                points="9,22 9,12 15,12 15,22"
+                stroke="currentColor"
+                stroke-width="2"
+              />
             </svg>
           </div>
           <h4>Our Studio</h4>
@@ -71,7 +75,11 @@ onMounted(() => {
                 stroke="currentColor"
                 stroke-width="2"
               />
-              <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" />
+              <polyline
+                points="22,6 12,13 2,6"
+                stroke="currentColor"
+                stroke-width="2"
+              />
             </svg>
           </div>
           <h4>Stay Connected</h4>
@@ -80,7 +88,13 @@ onMounted(() => {
           <div class="social-links">
             <div class="social-link">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
                 <path
                   d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 4.85"
                   stroke="currentColor"
@@ -100,7 +114,11 @@ onMounted(() => {
                   stroke="currentColor"
                   stroke-width="2"
                 />
-                <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" />
+                <polyline
+                  points="22,6 12,13 2,6"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
               </svg>
             </div>
           </div>
@@ -109,7 +127,9 @@ onMounted(() => {
 
       <div class="copyright-section">
         <div class="copyright-line"></div>
-        <p class="copyright">Copyright © 2022 Octopus Interactive Technology Limited</p>
+        <p class="copyright">
+          Copyright © 2022 Octopus Interactive Technology Limited
+        </p>
       </div>
     </div>
   </footer>
@@ -185,13 +205,18 @@ onMounted(() => {
 }
 
 .footer-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
   transition: left 0.8s ease;
 }
 

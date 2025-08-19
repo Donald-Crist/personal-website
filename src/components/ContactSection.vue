@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted } from "vue";
 
 // 组件挂载时初始化动画
 onMounted(() => {
@@ -7,22 +7,22 @@ onMounted(() => {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate-in')
+          entry.target.classList.add("animate-in");
         }
-      })
+      });
     },
     {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px',
-    }
-  )
+      rootMargin: "0px 0px -50px 0px",
+    },
+  );
 
   // 观察联系区域元素
-  const contactSection = document.querySelector('.contact-section')
+  const contactSection = document.querySelector(".contact-section");
   if (contactSection) {
-    observerAnimations.observe(contactSection)
+    observerAnimations.observe(contactSection);
   }
-})
+});
 </script>
 
 <template>
@@ -38,7 +38,9 @@ onMounted(() => {
       <div class="contact-card">
         <div class="contact-header">
           <h2>Get in touch</h2>
-          <p class="contact-subtitle">We are looking for mobile games to publish</p>
+          <p class="contact-subtitle">
+            We are looking for mobile games to publish
+          </p>
         </div>
 
         <div class="contact-content">
@@ -50,7 +52,11 @@ onMounted(() => {
                   stroke="currentColor"
                   stroke-width="2"
                 />
-                <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" />
+                <polyline
+                  points="22,6 12,13 2,6"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
               </svg>
             </div>
             <div class="contact-details">
@@ -69,7 +75,13 @@ onMounted(() => {
                   stroke="currentColor"
                   stroke-width="2"
                 />
-                <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" />
+                <circle
+                  cx="12"
+                  cy="10"
+                  r="3"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
               </svg>
             </div>
             <div class="contact-details">
@@ -256,7 +268,7 @@ onMounted(() => {
 }
 
 .contact-email::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -2px;
   left: 50%;
