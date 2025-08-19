@@ -1,3 +1,22 @@
+# 运行
+```bash
+# 安装pnpm
+npm i -g pnpm
+
+or
+
+brew install pnpm
+
+# 初始化项目（安装依赖与关联子项目间关系）
+pnpm install
+
+# 运行项目
+pnpm dev
+
+# 格式化项目
+pnpm format
+```
+
 # Octopus Interactive Technology Limited - 网站复刻
 
 这是一个使用 Vue 3 + TypeScript + Vite 构建的项目，一比一复刻了 octopusgame.net 网站。
