@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Horizontal Scroll Debug</title>
+    <style>
+      * {
+        outline: 1px solid red;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+        margin: 0;
+        padding: 0;
+      }
+      .debug {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        background: black;
+        color: white;
+        padding: 10px;
+        z-index: 10000;
+        font-size: 12px;
+      }
+    </style>
+    <script>
+      window.addEventListener('load', function () {
+        const debug = document.createElement('div')
+        debug.className = 'debug'
+        debug.innerHTML = `
+                Document Width: ${document.documentElement.scrollWidth}px<br>
+                Window Width: ${window.innerWidth}px<br>
+                Body Width: ${document.body.scrollWidth}px<br>
+                Has Horizontal Scroll: ${document.documentElement.scrollWidth > window.innerWidth ? 'YES' : 'NO'}
+            `
+        document.body.appendChild(debug)
+
+        // 检查超宽元素
+        const elements = document.querySelectorAll('*')
+        elements.forEach((el) => {
+          if (el.scrollWidth > window.innerWidth) {
+            console.log('Wide element:', el, 'Width:', el.scrollWidth)
+            el.style.border = '3px solid blue'
+          }
+        })
+      })
+    </script>
+  </head>
+  <body>
+    <iframe src="http://localhost:5173" width="100%" height="800px" frameborder="0"></iframe>
+  </body>
+</html>
